@@ -6,7 +6,6 @@ const laptopFixtures = {
         "name": "OMEN 16t-k000",
         "cpu": "Intel Core i5-12500H",
         "gpu": "NVIDIA GeForce RTX 3050 Laptop",
-        "price": 94999,
         "description": "Cheap but still fast"  
       }
     ],
@@ -18,7 +17,6 @@ const laptopFixtures = {
             "name": "ASUS E210",
             "cpu": "Intel Pentium N4020",
             "gpu": "Integrated Intel UHD Graphics",
-            "price": 10399,
             "description": "Extremely cheap and functional"  
         },
 
@@ -27,7 +25,6 @@ const laptopFixtures = {
             "name": "Alienware m18",
             "cpu": "Intel Core i7-13650HX",
             "gpu": "NVIDIA GeForce RTX 4050 Laptop",
-            "price": 22900,
             "description": "Extremely fast but expensive"  
         },
 
@@ -36,7 +33,6 @@ const laptopFixtures = {
             "name": "Lenovo Ideapad 3i",
             "cpu": "Intel Core i3-1115G4",
             "gpu": "Integrated Intel UHD Graphics",
-            "price": 199999,
             "description": "Touchscreen"  
         },
         
