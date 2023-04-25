@@ -1,29 +1,29 @@
 import React from 'react';
-import SchoolForm from "main/components/Schools/SchoolForm"
-import { schoolFixtures } from 'fixtures/schoolFixtures';
+ import RestaurantForm from "main/components/Restaurants/RestaurantForm"
+ import { restaurantFixtures } from 'fixtures/restaurantFixtures';
 
-export default {
-    title: 'components/Schools/SchoolForm',
-    component: SchoolForm
-};
+ export default {
+     title: 'components/Restaurants/RestaurantForm',
+     component: RestaurantForm
+ };
 
-const Template = (args) => {
-    return (
-        <SchoolForm {...args} />
-    )
-};
+ const Template = (args) => {
+     return (
+         <RestaurantForm {...args} />
+     )
+ };
 
-export const Default = Template.bind({});
+ export const Default = Template.bind({});
 
-Default.args = {
-    submitText: "Create",
-    submitAction: () => { console.log("Submit was clicked"); }
-};
+ Default.args = {
+     submitText: "Create",
+     submitAction: () => { console.log("Submit was clicked"); }
+ };
 
-export const Show = Template.bind({});
+ export const Show = Template.bind({});
 
-Show.args = {
-    School: schoolFixtures.oneSchool,
-    submitText: "",
-    submitAction: () => { }
-};
+ Show.args = {
+     Restaurant: restaurantFixtures.oneRestaurant,
+     submitText: "",
+     submitAction: () => { }
+ };
