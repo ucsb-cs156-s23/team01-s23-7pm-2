@@ -77,11 +77,11 @@ describe("storeUtils tests", () => {
         test("When stores is JSON of three stores, should return that JSON", () => {
 
             // arrange
-            const threestores = storeFixtures.threestores;
-            const mockstoreCollection = { nextId: 10, stores: threestores };
+            const threeStores = storeFixtures.threeStores;
+            const mockStoreCollection = { nextId: 10, stores: threeStores };
 
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-            getItemSpy.mockImplementation(createGetItemMock(mockstoreCollection));
+            getItemSpy.mockImplementation(createGetItemMock(mockStoreCollection));
 
             const setItemSpy = jest.spyOn(Storage.prototype, 'setItem');
             setItemSpy.mockImplementation((_key, _value) => null);
@@ -90,7 +90,7 @@ describe("storeUtils tests", () => {
             const result = storeUtils.get();
 
             // assert
-            expect(result).toEqual(mockstoreCollection);
+            expect(result).toEqual(mockStoreCollection);
             expect(setItemSpy).not.toHaveBeenCalled();
         });
     });
@@ -100,28 +100,28 @@ describe("storeUtils tests", () => {
         test("Check that getting a store by id works", () => {
 
             // arrange
-            const threestores = storeFixtures.threestores;
-            const idToGet = threestores[1].id;
+            const threeStores = storeFixtures.threeStores;
+            const idToGet = threeStores[1].id;
 
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, stores: threestores }));
+            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, stores: threeStores }));
 
             // act
             const result = storeUtils.getById(idToGet);
 
             // assert
 
-            const expected = { store: threestores[1] };
+            const expected = { store: threeStores[1] };
             expect(result).toEqual(expected);
         });
 
         test("Check that getting a non-existing store returns an error", () => {
 
             // arrange
-            const threestores = storeFixtures.threestores;
+            const threeStores = storeFixtures.threeStores;
 
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, stores: threestores }));
+            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, stores: threeStores }));
 
             // act
             const result = storeUtils.getById(99);
@@ -134,10 +134,10 @@ describe("storeUtils tests", () => {
         test("Check that an error is returned when id not passed", () => {
 
             // arrange
-            const threestores = storeFixtures.threestores;
+            const threeStores = storeFixtures.threeStores;
 
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, stores: threestores }));
+            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, stores: threeStores }));
 
             // act
             const result = storeUtils.getById();
@@ -152,7 +152,7 @@ describe("storeUtils tests", () => {
         test("Starting from [], check that adding one store works", () => {
 
             // arrange
-            const store = storeFixtures.onestore[0];
+            const store = storeFixtures.oneStore[0];
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
             getItemSpy.mockImplementation(createGetItemMock({ nextId: 1, stores: [] }));
 
@@ -165,7 +165,7 @@ describe("storeUtils tests", () => {
             // assert
             expect(result).toEqual(store);
             expect(setItemSpy).toHaveBeenCalledWith("stores",
-                JSON.stringify({ nextId: 2, stores: storeFixtures.onestore }));
+                JSON.stringify({ nextId: 2, stores: storeFixtures.oneStore }));
         });
     });
 
@@ -173,50 +173,50 @@ describe("storeUtils tests", () => {
         test("Check that updating an existing store works", () => {
 
             // arrange
-            const threestores = storeFixtures.threestores;
-            const updatedstore = {
-                ...threestores[0],
+            const threeStores = storeFixtures.threeStores;
+            const updatedStore = {
+                ...threeStores[0],
                 name: "Updated Name"
             };
-            const threestoresUpdated = [
-                updatedstore,
-                threestores[1],
-                threestores[2]
+            const threeStoresUpdated = [
+                updatedStore,
+                threeStores[1],
+                threeStores[2]
             ];
 
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, stores: threestores }));
+            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, stores: threeStores }));
 
             const setItemSpy = jest.spyOn(Storage.prototype, 'setItem');
             setItemSpy.mockImplementation((_key, _value) => null);
 
             // act
-            const result = storeUtils.update(updatedstore);
+            const result = storeUtils.update(updatedStore);
 
             // assert
-            const expected = { storeCollection: { nextId: 5, stores: threestoresUpdated } };
+            const expected = { storeCollection: { nextId: 5, stores: threeStoresUpdated } };
             expect(result).toEqual(expected);
             expect(setItemSpy).toHaveBeenCalledWith("stores", JSON.stringify(expected.storeCollection));
         });
         test("Check that updating an non-existing store returns an error", () => {
 
             // arrange
-            const threestores = storeFixtures.threestores;
+            const threeStores = storeFixtures.threeStores;
 
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, stores: threestores }));
+            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, stores: threeStores }));
 
             const setItemSpy = jest.spyOn(Storage.prototype, 'setItem');
             setItemSpy.mockImplementation((_key, _value) => null);
 
-            const updatedstore = {
+            const updatedStore = {
                 id: 99,
                 name: "Fake Name",
                 description: "Fake Description"
             }
 
             // act
-            const result = storeUtils.update(updatedstore);
+            const result = storeUtils.update(updatedStore);
 
             // assert
             const expectedError = `store with id 99 not found`
@@ -229,15 +229,15 @@ describe("storeUtils tests", () => {
         test("Check that deleting a store by id works", () => {
 
             // arrange
-            const threestores = storeFixtures.threestores;
-            const idToDelete = threestores[1].id;
-            const threestoresUpdated = [
-                threestores[0],
-                threestores[2]
+            const threeStores = storeFixtures.threeStores;
+            const idToDelete = threeStores[1].id;
+            const threeStoresUpdated = [
+                threeStores[0],
+                threeStores[2]
             ];
 
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, stores: threestores }));
+            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, stores: threeStores }));
 
             const setItemSpy = jest.spyOn(Storage.prototype, 'setItem');
             setItemSpy.mockImplementation((_key, _value) => null);
@@ -247,17 +247,17 @@ describe("storeUtils tests", () => {
 
             // assert
 
-            const expected = { storeCollection: { nextId: 5, stores: threestoresUpdated } };
+            const expected = { storeCollection: { nextId: 5, stores: threeStoresUpdated } };
             expect(result).toEqual(expected);
             expect(setItemSpy).toHaveBeenCalledWith("stores", JSON.stringify(expected.storeCollection));
         });
         test("Check that deleting a non-existing store returns an error", () => {
 
             // arrange
-            const threestores = storeFixtures.threestores;
+            const threeStores = storeFixtures.threeStores;
 
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, stores: threestores }));
+            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, stores: threeStores }));
 
             const setItemSpy = jest.spyOn(Storage.prototype, 'setItem');
             setItemSpy.mockImplementation((_key, _value) => null);
@@ -273,10 +273,10 @@ describe("storeUtils tests", () => {
         test("Check that an error is returned when id not passed", () => {
 
             // arrange
-            const threestores = storeFixtures.threestores;
+            const threeStores = storeFixtures.threeStores;
 
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, stores: threestores }));
+            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, stores: threeStores }));
 
             // act
             const result = storeUtils.del();
@@ -287,3 +287,4 @@ describe("storeUtils tests", () => {
         });
     });
 });
+
