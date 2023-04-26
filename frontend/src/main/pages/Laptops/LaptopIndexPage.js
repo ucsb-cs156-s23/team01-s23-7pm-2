@@ -5,7 +5,7 @@ import LaptopTable from 'main/components/Laptops/LaptopTable';
 import { laptopUtils } from 'main/utils/laptopUtils';
 import { useNavigate, Link } from 'react-router-dom';
 
-export default function RestaurantIndexPage() {
+export default function LaptopIndexPage() {
 
 	const navigate = useNavigate();
 
