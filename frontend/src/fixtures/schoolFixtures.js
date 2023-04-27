@@ -8,7 +8,8 @@ const schoolFixtures = {
         "city": "Santa Barbara",
         "state": "CA",
         "zip": "93106",
-        "rank": "32"      
+        "rank": "32",      
+        "description":""
       }
     ],
 
@@ -22,6 +23,7 @@ const schoolFixtures = {
              "state": "CA",
              "zip": "90089",
              "rank": "25",      
+             "description":""     
         },
 
         {
@@ -31,7 +33,8 @@ const schoolFixtures = {
              "city": "La Jolla",
              "state": "CA",
              "zip": "92093",
-             "rank": "34"  
+             "rank": "34",      
+             "description":""
         },
 
         {
@@ -41,7 +44,8 @@ const schoolFixtures = {
              "city": "Cambridge",
              "state": "MA",
              "zip": "02139",
-             "rank": "2"      
+             "rank": "2",      
+             "description":""  
         },
         
     ]

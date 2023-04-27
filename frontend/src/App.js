@@ -10,6 +10,11 @@ import RestaurantEditPage from "main/pages/Restaurants/RestaurantEditPage";
 import RestaurantIndexPage from "main/pages/Restaurants/RestaurantIndexPage";
 import RestaurantDetailsPage from "main/pages/Restaurants/RestaurantDetailsPage";
 
+import SchoolCreatePage from "main/pages/Schools/SchoolCreatePage";
+import SchoolEditPage from "main/pages/Schools/SchoolEditPage";
+import SchoolIndexPage from "main/pages/Schools/SchoolIndexPage";
+import SchoolDetailsPage from "main/pages/Schools/SchoolDetailsPage";
+
 import StoreCreatePage from "main/pages/Stores/StoreCreatePage";
 import StoreEditPage from "main/pages/Stores/StoreEditPage";
 import StoreIndexPage from "main/pages/Stores/StoreIndexPage";
@@ -49,6 +54,10 @@ function App() {
         <Route exact path="/laptops/details/:id" element={<LaptopDetailsPage />} />
         <Route exact path="/laptops/" element={<LaptopIndexPage />} />
 
+        <Route exact path="/schools/create" element={<SchoolCreatePage />} />
+        <Route exact path="/schools/edit/:id" element={<SchoolEditPage />} />
+        <Route exact path="/schools/details/:id" element={<SchoolDetailsPage />} />
+        <Route exact path="/schools/" element={<SchoolIndexPage />} />
       </Routes>
     </BrowserRouter>
   );

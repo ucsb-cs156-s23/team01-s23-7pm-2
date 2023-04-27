@@ -23,13 +23,13 @@ jest.mock('main/utils/schoolUtils', () => {
                     nextId: 5,
                     schools: [
                         {
-                            "id": 3,
-                             "name": "UCSD",
-                             "address": "9500 Gilman Dr",
-                             "city": "La Jolla",
-                             "state": "CA",
-                             "zip": "92093",
-                             "rank": "34"  
+                            id: 3,
+                            name: "UCSD",
+                            address: "9500 Gilman Dr",
+                            city: "La Jolla",
+                            state: "CA",
+                            zip: "92093",
+                            rank: "34"  
                         },
                     ]
                 }
