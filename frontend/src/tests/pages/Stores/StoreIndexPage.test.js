@@ -24,12 +24,12 @@ jest.mock('main/utils/storeUtils', () => {
                     stores: [
                         {
                             "id": 3,
-                            "name": "Freebirds",
+                            "name": "Home Depot",
                             "address": "879 Embarcadero del Norte",
                             "city": "Isla Vista",
                             "state": "CA",
                             "zip": "93117",
-                            "description": "Burrito joint, and iconic Isla Vista location"
+                            "location": "6975 Market Pl Dr"
                         },
                     ]
                 }
@@ -65,11 +65,11 @@ describe("StoreIndexPage tests", () => {
         expect(createStoreButton).toBeInTheDocument();
         expect(createStoreButton).toHaveAttribute("style", "float: right;");
 
-        const name = screen.getByText("Freebirds");
+        const name = screen.getByText("Home Depot");
         expect(name).toBeInTheDocument();
 
-        const description = screen.getByText("Burrito joint, and iconic Isla Vista location");
-        expect(description).toBeInTheDocument();
+        const location = screen.getByText("6975 Market Pl Dr");
+        expect(location).toBeInTheDocument();
 
         expect(screen.getByTestId("StoreTable-cell-row-0-col-Delete-button")).toBeInTheDocument();
         expect(screen.getByTestId("StoreTable-cell-row-0-col-Details-button")).toBeInTheDocument();
@@ -88,11 +88,11 @@ describe("StoreIndexPage tests", () => {
             </QueryClientProvider>
         );
 
-        const name = screen.getByText("Freebirds");
+        const name = screen.getByText("Home Depot");
         expect(name).toBeInTheDocument();
 
-        const description = screen.getByText("Burrito joint, and iconic Isla Vista location");
-        expect(description).toBeInTheDocument();
+        const location = screen.getByText("6975 Market Pl Dr");
+        expect(location).toBeInTheDocument();
 
         const deleteButton = screen.getByTestId("StoreTable-cell-row-0-col-Delete-button");
         expect(deleteButton).toBeInTheDocument();
@@ -108,7 +108,7 @@ describe("StoreIndexPage tests", () => {
         // assert - check that the console.log was called with the expected message
         expect(console.log).toHaveBeenCalled();
         const message = console.log.mock.calls[0][0];
-        const expectedMessage = `StoreIndexPage deleteCallback: {"id":3,"name":"Freebirds","description":"Burrito joint, and iconic Isla Vista location"}`;
+        const expectedMessage = `StoreIndexPage deleteCallback: {"id":3,"name":"Home Depot","location":"6975 Market Pl Dr"}`;
         expect(message).toMatch(expectedMessage);
         restoreConsole();
 
