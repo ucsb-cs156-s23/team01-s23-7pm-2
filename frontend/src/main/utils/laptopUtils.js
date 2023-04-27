@@ -87,6 +87,3 @@ const laptopUtils = {
 };
 
 export { laptopUtils };
-
-
-
