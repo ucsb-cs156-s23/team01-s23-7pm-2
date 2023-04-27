@@ -20,6 +20,11 @@ import StoreEditPage from "main/pages/Stores/StoreEditPage";
 import StoreIndexPage from "main/pages/Stores/StoreIndexPage";
 import StoreDetailsPage from "main/pages/Stores/StoreDetailsPage";
 
+import LaptopCreatePage from "main/pages/Laptops/LaptopCreatePage";
+import LaptopEditPage from "main/pages/Laptops/LaptopEditPage";
+import LaptopIndexPage from "main/pages/Laptops/LaptopIndexPage";
+import LaptopDetailsPage from "main/pages/Laptops/LaptopDetailsPage";
+
 function App() {
 
   const reload = () => window.location.reload();
@@ -43,6 +48,11 @@ function App() {
         <Route exact path="/stores/edit/:id" element={<StoreEditPage />} />
         <Route exact path="/stores/details/:id" element={<StoreDetailsPage />} />
         <Route exact path="/stores/" element={<StoreIndexPage />} />
+
+        <Route exact path="/laptops/create" element={<LaptopCreatePage />} />
+        <Route exact path="/laptops/edit/:id" element={<LaptopEditPage />} />
+        <Route exact path="/laptops/details/:id" element={<LaptopDetailsPage />} />
+        <Route exact path="/laptops/" element={<LaptopIndexPage />} />
 
         <Route exact path="/schools/create" element={<SchoolCreatePage />} />
         <Route exact path="/schools/edit/:id" element={<SchoolEditPage />} />
