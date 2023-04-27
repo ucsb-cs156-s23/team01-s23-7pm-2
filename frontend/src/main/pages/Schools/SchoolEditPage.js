@@ -16,7 +16,7 @@ export default function SchoolEditPage() {
     const onSubmit = async (school) => {
         const updatedSchool = schoolUtils.update(school);
         console.log("updatedSchool: " + JSON.stringify(updatedSchool));
-        navigate("/school");
+        navigate("/schools");
     }  
 
     return (

@@ -59,8 +59,8 @@ describe("SchoolEditPage tests", () => {
         );
 
         expect(screen.getByTestId("SchoolForm-name")).toBeInTheDocument();
-        expect(screen.getByDisplayValue('UCSD')).toBeInTheDocument();
-        expect(screen.getByDisplayValue('34')).toBeInTheDocument();
+        expect(screen.getByDisplayValue("UCSD")).toBeInTheDocument();
+        expect(screen.getByDisplayValue("34")).toBeInTheDocument();
     });
 
     test("redirects to /schools on submit", async () => {
@@ -70,8 +70,8 @@ describe("SchoolEditPage tests", () => {
         mockUpdate.mockReturnValue({
             "school": {
                 id: 3,
-                name: "School in San Diego (SD)",
-                rank: "94"
+                name: "UCSD",
+                rank: "34"
             }
         });
 
@@ -94,8 +94,8 @@ describe("SchoolEditPage tests", () => {
         expect(updateButton).toBeInTheDocument();
 
         await act(async () => {
-            fireEvent.change(nameInput, { target: { value: 'School in San Diego (SD)' } })
-            fireEvent.change(rankInput, { target: { value: '94' } })
+            fireEvent.change(nameInput, { target: { value: 'UCSD' } })
+            fireEvent.change(rankInput, { target: { value: '34' } })
             fireEvent.click(updateButton);
         });
 
@@ -105,7 +105,7 @@ describe("SchoolEditPage tests", () => {
         // assert - check that the console.log was called with the expected message
         expect(console.log).toHaveBeenCalled();
         const message = console.log.mock.calls[0][0];
-        const expectedMessage =  `updatedSchool: {"school":{"id":3,"name":"School in San Diego (SD)","rank":"94"}`
+        const expectedMessage =  `updatedSchool: {"school":{"id":3,"name":"UCSD","rank":"34"}` 
 
         expect(message).toMatch(expectedMessage);
         restoreConsole();

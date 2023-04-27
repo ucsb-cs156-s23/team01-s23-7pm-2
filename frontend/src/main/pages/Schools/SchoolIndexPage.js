@@ -2,28 +2,28 @@ import React from 'react'
 import Button from 'react-bootstrap/Button';
 import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
 import SchoolTable from 'main/components/Schools/SchoolTable';
-import { SchoolUtils } from 'main/utils/SchoolUtils';
+import { schoolUtils } from 'main/utils/schoolUtils';
 import { useNavigate, Link } from 'react-router-dom';
 
 export default function SchoolIndexPage() {
 
     const navigate = useNavigate();
 
-    const SchoolCollection = SchoolUtils.get();
+    const SchoolCollection = schoolUtils.get();
     const Schools = SchoolCollection.Schools;
 
     const showCell = (cell) => JSON.stringify(cell.row.values);
 
     const deleteCallback = async (cell) => {
         console.log(`SchoolIndexPage deleteCallback: ${showCell(cell)})`);
-        SchoolUtils.del(cell.row.values.id);
-        navigate("/Schools");
+        schoolUtils.del(cell.row.values.id);
+        navigate("/schools");
     }
 
     return (
         <BasicLayout>
             <div className="pt-2">
-                <Button style={{ float: "right" }} as={Link} to="/Schools/create">
+                <Button style={{ float: "right" }} as={Link} to="/schools/create">
                     Create School
                 </Button>
                 <h1>Schools</h1>

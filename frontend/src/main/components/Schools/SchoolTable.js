@@ -40,8 +40,8 @@ export default function SchoolTable({
             accessor: 'name',
         },
         {
-            Header: 'Description',
-            accessor: 'description',
+            Header: 'Rank',
+            accessor: 'rank',
         }
     ];
 

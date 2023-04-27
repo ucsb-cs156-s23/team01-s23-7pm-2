@@ -40,7 +40,7 @@ describe("SchoolCreatePage tests", () => {
         mockAdd.mockReturnValue({
             "school": {
                 id: 3,
-                name: "San Diego Univerity",
+                name: "San Diego University",
                 rank: "34"
             }
         });

@@ -21,7 +21,7 @@ jest.mock('main/utils/schoolUtils', () => {
             get: () => {
                 return {
                     nextId: 5,
-                    restaurants: [
+                    school: [
                         {
                             "id": 3,
                              "name": "UCSD",
@@ -46,7 +46,7 @@ describe("SchoolIndexPage tests", () => {
         render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
-                    <RestaurantIndexPage />
+                    <SchoolIndexPage />
                 </MemoryRouter>
             </QueryClientProvider>
         );
@@ -56,7 +56,7 @@ describe("SchoolIndexPage tests", () => {
         render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
-                    <RestaurantIndexPage />
+                    <SchoolIndexPage />
                 </MemoryRouter>
             </QueryClientProvider>
         );
