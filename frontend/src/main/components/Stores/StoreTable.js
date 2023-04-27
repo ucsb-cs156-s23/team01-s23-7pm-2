@@ -40,8 +40,8 @@ export default function StoreTable({
             accessor: 'name',
         },
         {
-            Header: 'Description',
-            accessor: 'description',
+            Header: 'Location',
+            accessor: 'location',
         }
     ];
 
