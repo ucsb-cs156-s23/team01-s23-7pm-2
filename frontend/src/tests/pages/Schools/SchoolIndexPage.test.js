@@ -21,7 +21,7 @@ jest.mock('main/utils/schoolUtils', () => {
             get: () => {
                 return {
                     nextId: 5,
-                    school: [
+                    schools: [
                         {
                             "id": 3,
                              "name": "UCSD",
@@ -69,7 +69,7 @@ describe("SchoolIndexPage tests", () => {
         expect(name).toBeInTheDocument();
 
         const rank = screen.getByText("34");
-        expect(description).toBeInTheDocument();
+        expect(rank).toBeInTheDocument();
 
         expect(screen.getByTestId("SchoolTable-cell-row-0-col-Delete-button")).toBeInTheDocument();
         expect(screen.getByTestId("SchoolTable-cell-row-0-col-Details-button")).toBeInTheDocument();

@@ -22,7 +22,7 @@ jest.mock('main/utils/schoolUtils', () => {
             update: (_school) => {return mockUpdate();},
             getById: (_id) => {
                 return {
-                    restaurant: {
+                    school: {
                         id: 3,
                         name: "UCSD",
                         rank: "34"
@@ -53,7 +53,7 @@ describe("SchoolEditPage tests", () => {
         render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
-                    <SchoolEditPage />
+                    <SchoolEditPage/>
                 </MemoryRouter>
             </QueryClientProvider>
         );
