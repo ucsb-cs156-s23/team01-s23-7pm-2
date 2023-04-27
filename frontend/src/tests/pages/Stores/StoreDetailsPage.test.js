@@ -20,8 +20,8 @@ jest.mock('main/utils/storeUtils', () => {
                 return {
                     store: {
                         id: 3,
-                        name: "Freebirds",
-                        description: "Burritos"
+                        name: "Home Depot",
+                        location: "6975 Market Pl Dr"
                     }
                 }
             }
@@ -50,8 +50,8 @@ describe("StoreDetailsPage tests", () => {
                 </MemoryRouter>
             </QueryClientProvider>
         );
-        expect(screen.getByText("Freebirds")).toBeInTheDocument();
-        expect(screen.getByText("Burritos")).toBeInTheDocument();
+        expect(screen.getByText("Home Depot")).toBeInTheDocument();
+        expect(screen.getByText("6975 Market Pl Dr")).toBeInTheDocument();
 
         expect(screen.queryByText("Delete")).not.toBeInTheDocument();
         expect(screen.queryByText("Edit")).not.toBeInTheDocument();
