@@ -1,15 +1,15 @@
 import React from 'react';
-import SchoolForm from "main/components/Schools/SchoolForm"
-import { schoolFixtures } from 'fixtures/schoolFixtures';
+import StoreForm from "main/components/Stores/StoreForm"
+import { storeFixtures } from 'fixtures/storeFixtures';
 
 export default {
-    title: 'components/Schools/SchoolForm',
-    component: SchoolForm
+    title: 'components/Stores/StoreForm',
+    component: StoreForm
 };
 
 const Template = (args) => {
     return (
-        <SchoolForm {...args} />
+        <StoreForm {...args} />
     )
 };
 
@@ -23,7 +23,7 @@ Default.args = {
 export const Show = Template.bind({});
 
 Show.args = {
-    School: schoolFixtures.oneSchool,
+    Store: storeFixtures.oneStore,
     submitText: "",
     submitAction: () => { }
 };
