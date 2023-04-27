@@ -87,15 +87,15 @@ describe("StoreEditPage tests", () => {
         expect(nameInput).toBeInTheDocument();
 
 
-        const descriptionInput = screen.getByLabelText("Location");
-        expect(descriptionInput).toBeInTheDocument();
+        const locationInput = screen.getByLabelText("Location");
+        expect(locationInput).toBeInTheDocument();
 
         const updateButton = screen.getByText("Update");
         expect(updateButton).toBeInTheDocument();
 
         await act(async () => {
             fireEvent.change(nameInput, { target: { value: 'Westfield Topanga' } })
-            fireEvent.change(descriptionInput, { target: { value: '6600 CA-27, Canoga Park' } })
+            fireEvent.change(locationInput, { target: { value: '6600 CA-27, Canoga Park' } })
             fireEvent.click(updateButton);
         });
 
