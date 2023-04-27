@@ -58,14 +58,14 @@ function SchoolForm({ initialContents, submitAction, buttonLabel = "Create" }) {
             </Form.Group>
 
             <Form.Group className="mb-3" >
-                <Form.Label htmlFor="description">Description</Form.Label>
+                <Form.Label htmlFor="rank">Rank</Form.Label>
                 <Form.Control
-                    data-testid={testIdPrefix + "-description"}
-                    id="description"
+                    data-testid={testIdPrefix + "-rank"}
+                    id="rank"
                     type="text"
-                    isInvalid={Boolean(errors.description)}
-                    {...register("description", {
-                        required: "Description is required."
+                    isInvalid={Boolean(errors.rank)}
+                    {...register("rank", {
+                        required: "Rank is required."
                     })}
                 />
                 <Form.Control.Feedback type="invalid">
