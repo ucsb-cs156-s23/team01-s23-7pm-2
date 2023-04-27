@@ -9,8 +9,8 @@ export default function SchoolIndexPage() {
 
     const navigate = useNavigate();
 
-    const SchoolCollection = schoolUtils.get();
-    const Schools = SchoolCollection.Schools;
+    const schoolCollection = schoolUtils.get();
+    const schools = schoolCollection.schools;
 
     const showCell = (cell) => JSON.stringify(cell.row.values);
 
@@ -27,7 +27,7 @@ export default function SchoolIndexPage() {
                     Create School
                 </Button>
                 <h1>Schools</h1>
-                <SchoolTable Schools={Schools} deleteCallback={deleteCallback} />
+                <SchoolTable schools={schools} deleteCallback={deleteCallback} />
             </div>
         </BasicLayout>
     )

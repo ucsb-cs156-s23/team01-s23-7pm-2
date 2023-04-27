@@ -23,13 +23,13 @@ jest.mock('main/utils/schoolUtils', () => {
                     nextId: 5,
                     school: [
                         {
-                            "id": 3,
-                             "name": "UCSD",
-                             "address": "9500 Gilman Dr",
-                             "city": "La Jolla",
-                             "state": "CA",
-                             "zip": "92093",
-                             "rank": "34"  
+                            id: 3,
+                            name: "UCSD",
+                            address: "9500 Gilman Dr",
+                            city: "La Jolla",
+                            state: "CA",
+                            zip: "92093",
+                            rank: "34"  
                         },
                     ]
                 }
@@ -69,7 +69,7 @@ describe("SchoolIndexPage tests", () => {
         expect(name).toBeInTheDocument();
 
         const rank = screen.getByText("34");
-        expect(description).toBeInTheDocument();
+        expect(rank).toBeInTheDocument();
 
         expect(screen.getByTestId("SchoolTable-cell-row-0-col-Delete-button")).toBeInTheDocument();
         expect(screen.getByTestId("SchoolTable-cell-row-0-col-Details-button")).toBeInTheDocument();

@@ -22,7 +22,7 @@ jest.mock('main/utils/schoolUtils', () => {
             update: (_school) => {return mockUpdate();},
             getById: (_id) => {
                 return {
-                    restaurant: {
+                    school: {
                         id: 3,
                         name: "UCSD",
                         rank: "34"
