@@ -69,9 +69,9 @@ describe("LaptopIndexPage tests", () => {
 		const description = screen.getByText("Extremely fast but expensive");
 		expect(description).toBeInTheDocument();
 
-		expect(screen.getByTestId("RestaurantTable-cell-row-0-col-Delete-button")).toBeInTheDocument();
-		expect(screen.getByTestId("RestaurantTable-cell-row-0-col-Details-button")).toBeInTheDocument();
-		expect(screen.getByTestId("RestaurantTable-cell-row-0-col-Edit-button")).toBeInTheDocument();
+		expect(screen.getByTestId("LaptopTable-cell-row-0-col-Delete-button")).toBeInTheDocument();
+		expect(screen.getByTestId("LaptopTable-cell-row-0-col-Details-button")).toBeInTheDocument();
+		expect(screen.getByTestId("LaptopTable-cell-row-0-col-Edit-button")).toBeInTheDocument();
 	});
 
 	test("delete button calls delete and reloads page", async () => {
