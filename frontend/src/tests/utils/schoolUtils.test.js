@@ -1,12 +1,12 @@
-import { mallFixtures } from "fixtures/mallFixtures";
-import { mallUtils } from "main/utils/mallUtils";
+import { schoolFixtures } from "fixtures/schoolFixtures";
+import { schoolUtils } from "main/utils/schoolUtils";
 
-describe("mallUtils tests", () => {
+describe("schoolUtils tests", () => {
     // return a function that can be used as a mock implementation of getItem
     // the value passed in will be convertd to JSON and returned as the value
-    // for the key "malls".  Any other key results in an error
+    // for the key "schools".  Any other key results in an error
     const createGetItemMock = (returnValue) => (key) => {
-        if (key === "malls") {
+        if (key === "schools") {
             return JSON.stringify(returnValue);
         } else {
             throw new Error("Unexpected key: " + key);
@@ -15,7 +15,7 @@ describe("mallUtils tests", () => {
 
     describe("get", () => {
 
-        test("When malls is undefined in local storage, should set to empty list", () => {
+        test("When schools is undefined in local storage, should set to empty list", () => {
 
             // arrange
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
@@ -25,17 +25,17 @@ describe("mallUtils tests", () => {
             setItemSpy.mockImplementation((_key, _value) => null);
 
             // act
-            const result = mallUtils.get();
+            const result = schoolUtils.get();
 
             // assert
-            const expected = { nextId: 1, malls: [] } ;
+            const expected = { nextId: 1, schools: [] } ;
             expect(result).toEqual(expected);
 
             const expectedJSON = JSON.stringify(expected);
-            expect(setItemSpy).toHaveBeenCalledWith("malls", expectedJSON);
+            expect(setItemSpy).toHaveBeenCalledWith("schools", expectedJSON);
         });
 
-        test("When malls is null in local storage, should set to empty list", () => {
+        test("When schools is null in local storage, should set to empty list", () => {
 
             // arrange
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
@@ -45,102 +45,102 @@ describe("mallUtils tests", () => {
             setItemSpy.mockImplementation((_key, _value) => null);
 
             // act
-            const result = mallUtils.get();
+            const result = schoolUtils.get();
 
             // assert
-            const expected = { nextId: 1, malls: [] } ;
+            const expected = { nextId: 1, schools: [] } ;
             expect(result).toEqual(expected);
 
             const expectedJSON = JSON.stringify(expected);
-            expect(setItemSpy).toHaveBeenCalledWith("malls", expectedJSON);
+            expect(setItemSpy).toHaveBeenCalledWith("schools", expectedJSON);
         });
 
-        test("When malls is [] in local storage, should return []", () => {
+        test("When schools is [] in local storage, should return []", () => {
 
             // arrange
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-            getItemSpy.mockImplementation(createGetItemMock({ nextId: 1, malls: [] }));
+            getItemSpy.mockImplementation(createGetItemMock({ nextId: 1, schools: [] }));
 
             const setItemSpy = jest.spyOn(Storage.prototype, 'setItem');
             setItemSpy.mockImplementation((_key, _value) => null);
 
             // act
-            const result = mallUtils.get();
+            const result = schoolUtils.get();
 
             // assert
-            const expected = { nextId: 1, malls: [] };
+            const expected = { nextId: 1, schools: [] };
             expect(result).toEqual(expected);
 
             expect(setItemSpy).not.toHaveBeenCalled();
         });
 
-        test("When malls is JSON of three malls, should return that JSON", () => {
+        test("When schools is JSON of three schools, should return that JSON", () => {
 
             // arrange
-            const threemalls = mallFixtures.threemalls;
-            const mockmallCollection = { nextId: 10, malls: threemalls };
+            const threeschools = schoolFixtures.threeschools;
+            const mockschoolCollection = { nextId: 10, schools: threeschools };
 
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-            getItemSpy.mockImplementation(createGetItemMock(mockmallCollection));
+            getItemSpy.mockImplementation(createGetItemMock(mockschoolCollection));
 
             const setItemSpy = jest.spyOn(Storage.prototype, 'setItem');
             setItemSpy.mockImplementation((_key, _value) => null);
 
             // act
-            const result = mallUtils.get();
+            const result = schoolUtils.get();
 
             // assert
-            expect(result).toEqual(mockmallCollection);
+            expect(result).toEqual(mockschoolCollection);
             expect(setItemSpy).not.toHaveBeenCalled();
         });
     });
 
 
     describe("getById", () => {
-        test("Check that getting a mall by id works", () => {
+        test("Check that getting a school by id works", () => {
 
             // arrange
-            const threemalls = mallFixtures.threemalls;
-            const idToGet = threemalls[1].id;
+            const threeschools = schoolFixtures.threeSchools;
+            const idToGet = threeschools[1].id;
 
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, malls: threemalls }));
+            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, schools: threeschools }));
 
             // act
-            const result = mallUtils.getById(idToGet);
+            const result = schoolUtils.getById(idToGet);
 
             // assert
 
-            const expected = { mall: threemalls[1] };
+            const expected = { school: threeschools[1] };
             expect(result).toEqual(expected);
         });
 
-        test("Check that getting a non-existing mall returns an error", () => {
+        test("Check that getting a non-existing school returns an error", () => {
 
             // arrange
-            const threemalls = mallFixtures.threemalls;
+            const threeSchools = schoolFixtures.threeSchools;
 
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, malls: threemalls }));
+            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, schools: threeSchools }));
 
             // act
-            const result = mallUtils.getById(99);
+            const result = schoolUtils.getById(99);
 
             // assert
-            const expectedError = `mall with id 99 not found`
+            const expectedError = `school with id 99 not found`
             expect(result).toEqual({ error: expectedError });
         });
 
         test("Check that an error is returned when id not passed", () => {
 
             // arrange
-            const threemalls = mallFixtures.threemalls;
+            const threeSchools = schoolFixtures.threeSchools;
 
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, malls: threemalls }));
+            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, schools: threeSchools }));
 
             // act
-            const result = mallUtils.getById();
+            const result = schoolUtils.getById();
 
             // assert
             const expectedError = `id is a required parameter`
@@ -149,137 +149,137 @@ describe("mallUtils tests", () => {
 
     });
     describe("add", () => {
-        test("Starting from [], check that adding one mall works", () => {
+        test("Starting from [], check that adding one school works", () => {
 
             // arrange
-            const mall = mallFixtures.onemall[0];
+            const school = schoolFixtures.oneSchool[0];
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-            getItemSpy.mockImplementation(createGetItemMock({ nextId: 1, malls: [] }));
+            getItemSpy.mockImplementation(createGetItemMock({ nextId: 1, schools: [] }));
 
             const setItemSpy = jest.spyOn(Storage.prototype, 'setItem');
             setItemSpy.mockImplementation((_key, _value) => null);
 
             // act
-            const result = mallUtils.add(mall);
+            const result = schoolUtils.add(school);
 
             // assert
-            expect(result).toEqual(mall);
-            expect(setItemSpy).toHaveBeenCalledWith("malls",
-                JSON.stringify({ nextId: 2, malls: mallFixtures.onemall }));
+            expect(result).toEqual(school);
+            expect(setItemSpy).toHaveBeenCalledWith("schools",
+                JSON.stringify({ nextId: 2, schools: schoolFixtures.oneSchool }));
         });
     });
 
     describe("update", () => {
-        test("Check that updating an existing mall works", () => {
+        test("Check that updating an existing school works", () => {
 
             // arrange
-            const threemalls = mallFixtures.threemalls;
-            const updatedmall = {
-                ...threemalls[0],
+            const threeSchools = schoolFixtures.threeSchools;
+            const updatedSchool = {
+                ...threeSchools[0],
                 name: "Updated Name"
             };
-            const threemallsUpdated = [
-                updatedmall,
-                threemalls[1],
-                threemalls[2]
+            const threeSchoolsUpdated = [
+                updatedSchool,
+                threeSchools[1],
+                threeSchools[2]
             ];
 
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, malls: threemalls }));
+            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, schools: threeSchools }));
 
             const setItemSpy = jest.spyOn(Storage.prototype, 'setItem');
             setItemSpy.mockImplementation((_key, _value) => null);
 
             // act
-            const result = mallUtils.update(updatedmall);
+            const result = schoolUtils.update(updatedSchool);
 
             // assert
-            const expected = { mallCollection: { nextId: 5, malls: threemallsUpdated } };
+            const expected = { schoolCollection: { nextId: 5, schools: threeSchoolsUpdated } };
             expect(result).toEqual(expected);
-            expect(setItemSpy).toHaveBeenCalledWith("malls", JSON.stringify(expected.mallCollection));
+            expect(setItemSpy).toHaveBeenCalledWith("schools", JSON.stringify(expected.schoolCollection));
         });
-        test("Check that updating an non-existing mall returns an error", () => {
+        test("Check that updating an non-existing school returns an error", () => {
 
             // arrange
-            const threemalls = mallFixtures.threemalls;
+            const threeSchools = schoolFixtures.threeSchools;
 
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, malls: threemalls }));
+            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, schools: threeSchools }));
 
             const setItemSpy = jest.spyOn(Storage.prototype, 'setItem');
             setItemSpy.mockImplementation((_key, _value) => null);
 
-            const updatedmall = {
+            const updatedSchool = {
                 id: 99,
                 name: "Fake Name",
                 description: "Fake Description"
             }
 
             // act
-            const result = mallUtils.update(updatedmall);
+            const result = schoolUtils.update(updatedSchool);
 
             // assert
-            const expectedError = `mall with id 99 not found`
+            const expectedError = `school with id 99 not found`
             expect(result).toEqual({ error: expectedError });
             expect(setItemSpy).not.toHaveBeenCalled();
         });
     });
 
     describe("del", () => {
-        test("Check that deleting a mall by id works", () => {
+        test("Check that deleting a school by id works", () => {
 
             // arrange
-            const threemalls = mallFixtures.threemalls;
-            const idToDelete = threemalls[1].id;
-            const threemallsUpdated = [
-                threemalls[0],
-                threemalls[2]
+            const threeSchools = schoolFixtures.threeSchools;
+            const idToDelete = threeSchools[1].id;
+            const threeSchoolsUpdated = [
+                threeSchools[0],
+                threeSchools[2]
             ];
 
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, malls: threemalls }));
+            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, schools: threeSchools }));
 
             const setItemSpy = jest.spyOn(Storage.prototype, 'setItem');
             setItemSpy.mockImplementation((_key, _value) => null);
 
             // act
-            const result = mallUtils.del(idToDelete);
+            const result = schoolUtils.del(idToDelete);
 
             // assert
 
-            const expected = { mallCollection: { nextId: 5, malls: threemallsUpdated } };
+            const expected = { schoolCollection: { nextId: 5, schools: threeSchoolsUpdated } };
             expect(result).toEqual(expected);
-            expect(setItemSpy).toHaveBeenCalledWith("malls", JSON.stringify(expected.mallCollection));
+            expect(setItemSpy).toHaveBeenCalledWith("schools", JSON.stringify(expected.schoolCollection));
         });
-        test("Check that deleting a non-existing mall returns an error", () => {
+        test("Check that deleting a non-existing school returns an error", () => {
 
             // arrange
-            const threemalls = mallFixtures.threemalls;
+            const threeSchools = schoolFixtures.threeSchools;
 
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, malls: threemalls }));
+            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, schools: threeSchools }));
 
             const setItemSpy = jest.spyOn(Storage.prototype, 'setItem');
             setItemSpy.mockImplementation((_key, _value) => null);
 
             // act
-            const result = mallUtils.del(99);
+            const result = schoolUtils.del(99);
 
             // assert
-            const expectedError = `mall with id 99 not found`
+            const expectedError = `school with id 99 not found`
             expect(result).toEqual({ error: expectedError });
             expect(setItemSpy).not.toHaveBeenCalled();
         });
         test("Check that an error is returned when id not passed", () => {
 
             // arrange
-            const threemalls = mallFixtures.threemalls;
+            const threeSchools = schoolFixtures.threeSchools;
 
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, malls: threemalls }));
+            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, schools: threeSchools }));
 
             // act
-            const result = mallUtils.del();
+            const result = schoolUtils.del();
 
             // assert
             const expectedError = `id is a required parameter`
@@ -287,3 +287,4 @@ describe("mallUtils tests", () => {
         });
     });
 });
+
