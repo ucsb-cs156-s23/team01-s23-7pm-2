@@ -24,8 +24,8 @@ jest.mock('main/utils/storeUtils', () => {
                 return {
                     store: {
                         id: 3,
-                        name: "Freebirds",
-                        description: "Burritos"
+                        name: "Home Depot",
+                        location: "6975 Market Pl Dr"
                     }
                 }
             }
@@ -59,8 +59,8 @@ describe("StoreEditPage tests", () => {
         );
 
         expect(screen.getByTestId("StoreForm-name")).toBeInTheDocument();
-        expect(screen.getByDisplayValue('Freebirds')).toBeInTheDocument();
-        expect(screen.getByDisplayValue('Burritos')).toBeInTheDocument();
+        expect(screen.getByDisplayValue('Home Depot')).toBeInTheDocument();
+        expect(screen.getByDisplayValue('6975 Market Pl Dr')).toBeInTheDocument();
     });
 
     test("redirects to /stores on submit", async () => {
@@ -70,8 +70,8 @@ describe("StoreEditPage tests", () => {
         mockUpdate.mockReturnValue({
             "store": {
                 id: 3,
-                name: "South Coast Deli (Goleta)",
-                description: "Sandwiches, Salads and more"
+                name: "Westfield Topanga",
+                location: "6600 CA-27, Canoga Park"
             }
         });
 
@@ -87,15 +87,15 @@ describe("StoreEditPage tests", () => {
         expect(nameInput).toBeInTheDocument();
 
 
-        const descriptionInput = screen.getByLabelText("Description");
-        expect(descriptionInput).toBeInTheDocument();
+        const locationInput = screen.getByLabelText("Location");
+        expect(locationInput).toBeInTheDocument();
 
         const updateButton = screen.getByText("Update");
         expect(updateButton).toBeInTheDocument();
 
         await act(async () => {
-            fireEvent.change(nameInput, { target: { value: 'South Coast Deli (Goleta)' } })
-            fireEvent.change(descriptionInput, { target: { value: 'Sandwiches, Salads and more' } })
+            fireEvent.change(nameInput, { target: { value: 'Westfield Topanga' } })
+            fireEvent.change(locationInput, { target: { value: '6600 CA-27, Canoga Park' } })
             fireEvent.click(updateButton);
         });
 
@@ -105,7 +105,7 @@ describe("StoreEditPage tests", () => {
         // assert - check that the console.log was called with the expected message
         expect(console.log).toHaveBeenCalled();
         const message = console.log.mock.calls[0][0];
-        const expectedMessage =  `updatedStore: {"store":{"id":3,"name":"South Coast Deli (Goleta)","description":"Sandwiches, Salads and more"}`
+        const expectedMessage =  `updatedStore: {"store":{"id":3,"name":"Westfield Topanga","location":"6600 CA-27, Canoga Park"}`
 
         expect(message).toMatch(expectedMessage);
         restoreConsole();

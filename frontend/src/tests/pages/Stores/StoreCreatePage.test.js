@@ -41,7 +41,7 @@ describe("StoreCreatePage tests", () => {
             "store": {
                 id: 3,
                 name: "South Coast Deli",
-                description: "Sandwiches and Salads"
+                location: "Sandwiches and Salads"
             }
         });
 
@@ -57,15 +57,15 @@ describe("StoreCreatePage tests", () => {
         expect(nameInput).toBeInTheDocument();
 
 
-        const descriptionInput = screen.getByLabelText("Description");
-        expect(descriptionInput).toBeInTheDocument();
+        const locationInput = screen.getByLabelText("Location");
+        expect(locationInput).toBeInTheDocument();
 
         const createButton = screen.getByText("Create");
         expect(createButton).toBeInTheDocument();
 
         await act(async () => {
             fireEvent.change(nameInput, { target: { value: 'South Coast Deli' } })
-            fireEvent.change(descriptionInput, { target: { value: 'Sandwiches and Salads' } })
+            fireEvent.change(locationInput, { target: { value: 'Sandwiches and Salads' } })
             fireEvent.click(createButton);
         });
 
@@ -75,7 +75,7 @@ describe("StoreCreatePage tests", () => {
         // assert - check that the console.log was called with the expected message
         expect(console.log).toHaveBeenCalled();
         const message = console.log.mock.calls[0][0];
-        const expectedMessage =  `createdStore: {"store":{"id":3,"name":"South Coast Deli","description":"Sandwiches and Salads"}`
+        const expectedMessage =  `createdStore: {"store":{"id":3,"name":"South Coast Deli","location":"Sandwiches and Salads"}`
 
         expect(message).toMatch(expectedMessage);
         restoreConsole();
