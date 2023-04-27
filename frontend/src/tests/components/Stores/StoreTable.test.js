@@ -141,7 +141,7 @@ describe("StoreTable tests", () => {
     // assert - check that the console.log was called with the expected message
     expect(console.log).toHaveBeenCalled();
     const message = console.log.mock.calls[0][0];
-    const expectedMessage = `editCallback: {"id":2,"name":"Target"})`;
+    const expectedMessage = `editCallback: {"id":2,"name":"Target","location":"6865 Hollister Ave"})`;
     expect(message).toMatch(expectedMessage);
     restoreConsole();
   });
@@ -175,7 +175,7 @@ describe("StoreTable tests", () => {
     // assert - check that the console.log was called with the expected message
     expect(console.log).toHaveBeenCalled();
     const message = console.log.mock.calls[0][0];
-    const expectedMessage = `detailsCallback: {"id":2,"name":"Target"})`;
+    const expectedMessage = `detailsCallback: {"id":2,"name":"Target","location":"6865 Hollister Ave"})`;
     expect(message).toMatch(expectedMessage);
     restoreConsole();
   });
@@ -206,7 +206,7 @@ describe("StoreTable tests", () => {
      // assert - check that the console.log was called with the expected message
      await(waitFor(() => expect(console.log).toHaveBeenCalled()));
      const message = console.log.mock.calls[0][0];
-     const expectedMessage = `deleteCallback: {"id":2,"name":"Target"})`;
+     const expectedMessage = `deleteCallback: {"id":2,"name":"Target","location":"6865 Hollister Ave"})`;
      expect(message).toMatch(expectedMessage);
      restoreConsole();
   });
