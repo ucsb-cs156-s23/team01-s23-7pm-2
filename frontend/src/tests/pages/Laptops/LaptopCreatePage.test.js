@@ -65,11 +65,12 @@ describe("LaptopCreatePage tests", () => {
         const createButton = screen.getByText("Create");
         expect(createButton).toBeInTheDocument();
 
+        const otherLaptop = {...laptopFixtures.oneLaptop[0]}
         await act(async () => {
-            fireEvent.change(nameInput, { target: { value: laptopFixtures.oneLaptop.name } })
-            fireEvent.change(cpuInput, { target: { value: laptopFixtures.oneLaptop.cpu } })
-            fireEvent.change(gpuInput, { target: { value: laptopFixtures.oneLaptop.gpu } })
-            fireEvent.change(descriptionInput, { target: { value: laptopFixtures.oneLaptop.description } })
+            fireEvent.change(nameInput, { target: { value: otherLaptop.name } })
+            fireEvent.change(cpuInput, { target: { value: otherLaptop.cpu } })
+            fireEvent.change(gpuInput, { target: { value: otherLaptop.gpu } })
+            fireEvent.change(descriptionInput, { target: { value: otherLaptop.description } })
             fireEvent.click(createButton);
         });
 
@@ -79,7 +80,7 @@ describe("LaptopCreatePage tests", () => {
         // assert - check that the console.log was called with the expected message
         expect(console.log).toHaveBeenCalled();
         const message = console.log.mock.calls[0][0];
-        const expectedMessage = `createdLaptop: {"laptop":[${JSON.stringify(laptopFixtures.oneLaptop)}]}`
+        const expectedMessage = `createdLaptop: {"laptop":${JSON.stringify(laptopFixtures.oneLaptop)}}`
 
         expect(message).toMatch(expectedMessage);
         restoreConsole();
