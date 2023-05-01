@@ -53,11 +53,6 @@ describe("LaptopCreatePage tests", () => {
         const nameInput = screen.getByLabelText("Name");
         expect(nameInput).toBeInTheDocument();
 
-        const cpuInput = screen.getByLabelText("CPU");
-        expect(cpuInput).toBeInTheDocument();
-
-        const gpuInput = screen.getByLabelText("GPU");
-        expect(gpuInput).toBeInTheDocument();
 
         const descriptionInput = screen.getByLabelText("Description");
         expect(descriptionInput).toBeInTheDocument();
@@ -68,8 +63,6 @@ describe("LaptopCreatePage tests", () => {
         const otherLaptop = {...laptopFixtures.oneLaptop[0]}
         await act(async () => {
             fireEvent.change(nameInput, { target: { value: otherLaptop.name } })
-            fireEvent.change(cpuInput, { target: { value: otherLaptop.cpu } })
-            fireEvent.change(gpuInput, { target: { value: otherLaptop.gpu } })
             fireEvent.change(descriptionInput, { target: { value: otherLaptop.description } })
             fireEvent.click(createButton);
         });
