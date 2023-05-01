@@ -58,38 +58,6 @@ function LaptopForm({ initialContents, submitAction, buttonLabel = "Create" }) {
             </Form.Group>
 
             <Form.Group className="mb-3" >
-                <Form.Label htmlFor="cpu">CPU</Form.Label>
-                <Form.Control
-                    data-testid={testIdPrefix + "-cpu"}
-                    id="cpu"
-                    type="text"
-                    isInvalid={Boolean(errors.cpu)}
-                    {...register("cpu", {
-                        required: "CPU is required."
-                    })}
-                />
-                <Form.Control.Feedback type="invalid">
-                    {errors.cpu?.message}
-                </Form.Control.Feedback>
-            </Form.Group>
-
-            <Form.Group className="mb-3" >
-                <Form.Label htmlFor="gpu">GPU</Form.Label>
-                <Form.Control
-                    data-testid={testIdPrefix + "-gpu"}
-                    id="gpu"
-                    type="text"
-                    isInvalid={Boolean(errors.gpu)}
-                    {...register("gpu", {
-                        required: "GPU is required."
-                    })}
-                />
-                <Form.Control.Feedback type="invalid">
-                    {errors.gpu?.message}
-                </Form.Control.Feedback>
-            </Form.Group>
-
-            <Form.Group className="mb-3" >
                 <Form.Label htmlFor="description">Description</Form.Label>
                 <Form.Control
                     data-testid={testIdPrefix + "-description"}
