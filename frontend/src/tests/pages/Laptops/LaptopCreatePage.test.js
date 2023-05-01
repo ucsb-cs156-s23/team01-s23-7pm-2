@@ -53,7 +53,6 @@ describe("LaptopCreatePage tests", () => {
         const nameInput = screen.getByLabelText("Name");
         expect(nameInput).toBeInTheDocument();
 
-
         const descriptionInput = screen.getByLabelText("Description");
         expect(descriptionInput).toBeInTheDocument();
 
