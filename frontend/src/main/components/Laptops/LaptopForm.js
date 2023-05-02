@@ -19,23 +19,23 @@ function LaptopForm({ initialContents, submitAction, buttonLabel = "Create" }) {
    
     const testIdPrefix = "LaptopForm";
 
-    return (
+	return (
 
-        <Form onSubmit={handleSubmit(submitAction)}>
+		<Form onSubmit={handleSubmit(submitAction)}>
 
-            {initialContents && (
-                <Form.Group className="mb-3" >
-                    <Form.Label htmlFor="id">Id</Form.Label>
-                    <Form.Control
-                        data-testid={testIdPrefix + "-id"}
-                        id="id"
-                        type="text"
-                        {...register("id")}
-                        value={initialContents.id}
-                        disabled
-                    />
-                </Form.Group>
-            )}
+			{initialContents && (
+				<Form.Group className="mb-3" >
+					<Form.Label htmlFor="id">Id</Form.Label>
+					<Form.Control
+						data-testid={testIdPrefix + "-id"}
+						id="id"
+						type="text"
+						{...register("id")}
+						value={initialContents.id}
+						disabled
+					/>
+				</Form.Group>
+			)}
 
             <Form.Group className="mb-3" >
                 <Form.Label htmlFor="name">Name</Form.Label>
@@ -106,23 +106,23 @@ function LaptopForm({ initialContents, submitAction, buttonLabel = "Create" }) {
             </Form.Group>
 
 
-            <Button
-                type="submit"
-                data-testid={testIdPrefix + "-submit"}
-            >
-                {buttonLabel}
-            </Button>
-            <Button
-                variant="Secondary"
-                onClick={() => navigate(-1)}
-                data-testid={testIdPrefix + "-cancel"}
-            >
-                Cancel
-            </Button>
+			<Button
+				type="submit"
+				data-testid={testIdPrefix + "-submit"}
+			>
+				{buttonLabel}
+			</Button>
+			<Button
+				variant="Secondary"
+				onClick={() => navigate(-1)}
+				data-testid={testIdPrefix + "-cancel"}
+			>
+				Cancel
+			</Button>
 
-        </Form>
+		</Form>
 
-    )
+	)
 }
 
 export default LaptopForm;

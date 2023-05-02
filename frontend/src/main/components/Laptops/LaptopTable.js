@@ -42,6 +42,10 @@ export default function LaptopTable({
 		{
 			Header: 'Description',
 			accessor: 'description',
+		},
+		{
+			Header: 'CPU',
+			accessor: 'cpu',
 		}
 	];
 
