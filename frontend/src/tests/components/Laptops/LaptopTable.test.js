@@ -15,17 +15,17 @@ jest.mock('react-router-dom', () => ({
 describe("LaptopTable tests", () => {
 	const queryClient = new QueryClient();
 
-	const expectedHeaders = ["id", "Name", "Description"];
-	const expectedFields = ["id", "name", "description"];
+	const expectedHeaders = ["id", "Name", "Description","CPU"];
+	const expectedFields = ["id", "name", "description","cpu"];
 	const testId = "LaptopTable";
 
 	test("showCell function works properly", () => {
 		const cell = {
 			row: {
-				values: { a: 1, b: 2, c: 3 }
+				values: { a: 1, b: 2, c: 3, d: 4 }
 			},
 		};
-		expect(showCell(cell)).toBe(`{"a":1,"b":2,"c":3}`);
+		expect(showCell(cell)).toBe(`{"a":1,"b":2,"c":3,"d":4}`);
 	});
 
 	test("renders without crashing for empty table", () => {
