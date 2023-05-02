@@ -9,7 +9,7 @@ const schoolFixtures = {
         "state": "CA",
         "zip": "93106",
         "rank": "32",      
-        "description":""
+        "description":"A public land-grand research university in Santa Barbara, California. It is the third-oldest UC."
       }
     ],
 
@@ -23,7 +23,7 @@ const schoolFixtures = {
              "state": "CA",
              "zip": "90089",
              "rank": "25",      
-             "description":""     
+             "description":"A private research university in Los Angeles, the oldest private research university."     
         },
 
         {
@@ -34,7 +34,7 @@ const schoolFixtures = {
              "state": "CA",
              "zip": "92093",
              "rank": "34",      
-             "description":""
+             "description":"Public land-grant research university in La Jolla, California. It is ranked among the best universities in the world."
         },
 
         {
@@ -45,7 +45,7 @@ const schoolFixtures = {
              "state": "MA",
              "zip": "02139",
              "rank": "2",      
-             "description":""  
+             "description":"A private land-grant research university in Cambridge, Massachusetts. Has played a significant role in the development of many areas of modern technology and science."  
         },
         
     ]

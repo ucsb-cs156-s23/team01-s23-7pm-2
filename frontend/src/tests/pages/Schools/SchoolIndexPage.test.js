@@ -29,7 +29,8 @@ jest.mock('main/utils/schoolUtils', () => {
                             city: "La Jolla",
                             state: "CA",
                             zip: "92093",
-                            rank: "34"  
+                            rank: "34",
+                            description: "Public land-grant research university in La Jolla, California. It is ranked among the best universities in the world."
                         },
                     ]
                 }
@@ -71,6 +72,9 @@ describe("SchoolIndexPage tests", () => {
         const rank = screen.getByText("34");
         expect(rank).toBeInTheDocument();
 
+        const description = screen.getByText("Public land-grant research university in La Jolla, California. It is ranked among the best universities in the world.");
+        expect(description).toBeInTheDocument();
+
         expect(screen.getByTestId("SchoolTable-cell-row-0-col-Delete-button")).toBeInTheDocument();
         expect(screen.getByTestId("SchoolTable-cell-row-0-col-Details-button")).toBeInTheDocument();
         expect(screen.getByTestId("SchoolTable-cell-row-0-col-Edit-button")).toBeInTheDocument();
@@ -94,6 +98,9 @@ describe("SchoolIndexPage tests", () => {
         const rank = screen.getByText("34");
         expect(rank).toBeInTheDocument();
 
+        const description = screen.getByText("Public land-grant research university in La Jolla, California. It is ranked among the best universities in the world.");
+        expect(description).toBeInTheDocument();
+
         const deleteButton = screen.getByTestId("SchoolTable-cell-row-0-col-Delete-button");
         expect(deleteButton).toBeInTheDocument();
 
@@ -108,7 +115,7 @@ describe("SchoolIndexPage tests", () => {
         // assert - check that the console.log was called with the expected message
         expect(console.log).toHaveBeenCalled();
         const message = console.log.mock.calls[0][0];
-        const expectedMessage = `SchoolIndexPage deleteCallback: {"id":3,"name":"UCSD","rank":"34"}`;
+        const expectedMessage = `SchoolIndexPage deleteCallback: {"id":3,"name":"UCSD","rank":"34","description":"Public land-grant research university in La Jolla, California. It is ranked among the best universities in the world."}`;
         expect(message).toMatch(expectedMessage);
         restoreConsole();
 
