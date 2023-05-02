@@ -106,7 +106,7 @@ describe("LaptopIndexPage tests", () => {
 		// assert - check that the console.log was called with the expected message
 		expect(console.log).toHaveBeenCalled();
 		const message = console.log.mock.calls[0][0];
-		const expectedMessage = `LaptopIndexPage deleteCallback: {"id":3,"name":"Alienware m18","description":"Extremely fast but expensive","cpu":"Intel Core i7-13650HX"}`;
+		const expectedMessage = `LaptopIndexPage deleteCallback: {"id":3,"name":"Alienware m18","cpu":"Intel Core i7-13650HX","gpu":"NVIDIA GeForce RTX 4050 Laptop","description":"Extremely fast but expensive"}`;
 		expect(message).toMatch(expectedMessage);
 		restoreConsole();
 

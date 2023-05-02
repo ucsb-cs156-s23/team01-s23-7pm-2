@@ -15,17 +15,17 @@ jest.mock('react-router-dom', () => ({
 describe("LaptopTable tests", () => {
 	const queryClient = new QueryClient();
 
-	const expectedHeaders = ["id", "Name", "Description","CPU"];
-	const expectedFields = ["id", "name", "description","cpu"];
+	const expectedHeaders = ["id", "Name", "CPU", "GPU", "Description",];
+	const expectedFields = ["id", "name", "cpu", "gpu", "description",];
 	const testId = "LaptopTable";
 
 	test("showCell function works properly", () => {
 		const cell = {
 			row: {
-				values: { a: 1, b: 2, c: 3, d: 4 }
+				values: { a: 1, b: 2, c: 3, d: 4, e: 5 }
 			},
 		};
-		expect(showCell(cell)).toBe(`{"a":1,"b":2,"c":3,"d":4}`);
+		expect(showCell(cell)).toBe(`{"a":1,"b":2,"c":3,"d":4,"e":5}`);
 	});
 
 	test("renders without crashing for empty table", () => {
@@ -63,10 +63,12 @@ describe("LaptopTable tests", () => {
 		expect(screen.getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("2");
 		expect(screen.getByTestId(`${testId}-cell-row-0-col-name`)).toHaveTextContent("ASUS E210");
 		expect(screen.getByTestId(`${testId}-cell-row-0-col-cpu`)).toHaveTextContent("Intel Pentium N4020");
+		expect(screen.getByTestId(`${testId}-cell-row-0-col-gpu`)).toHaveTextContent("Integrated Intel UHD Graphics");
 
 		expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("3");
 		expect(screen.getByTestId(`${testId}-cell-row-1-col-name`)).toHaveTextContent("Alienware m18");
 		expect(screen.getByTestId(`${testId}-cell-row-1-col-cpu`)).toHaveTextContent("Intel Core i7-13650HX");
+		expect(screen.getByTestId(`${testId}-cell-row-1-col-gpu`)).toHaveTextContent("NVIDIA GeForce RTX 4050 Laptop");
 
 		const detailsButton = screen.getByTestId(`${testId}-cell-row-0-col-Details-button`);
 		expect(detailsButton).toBeInTheDocument();
@@ -105,10 +107,12 @@ describe("LaptopTable tests", () => {
 		expect(screen.getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("2");
 		expect(screen.getByTestId(`${testId}-cell-row-0-col-name`)).toHaveTextContent("ASUS E210");
 		expect(screen.getByTestId(`${testId}-cell-row-0-col-cpu`)).toHaveTextContent("Intel Pentium N4020");
+		expect(screen.getByTestId(`${testId}-cell-row-0-col-gpu`)).toHaveTextContent("Integrated Intel UHD Graphics");
 
 		expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("3");
 		expect(screen.getByTestId(`${testId}-cell-row-1-col-name`)).toHaveTextContent("Alienware m18");
 		expect(screen.getByTestId(`${testId}-cell-row-1-col-cpu`)).toHaveTextContent("Intel Core i7-13650HX");
+		expect(screen.getByTestId(`${testId}-cell-row-1-col-gpu`)).toHaveTextContent("NVIDIA GeForce RTX 4050 Laptop");
 
 		expect(screen.queryByText("Delete")).not.toBeInTheDocument();
 		expect(screen.queryByText("Edit")).not.toBeInTheDocument();
@@ -133,6 +137,7 @@ describe("LaptopTable tests", () => {
 		expect(await screen.findByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("2");
 		expect(screen.getByTestId(`${testId}-cell-row-0-col-name`)).toHaveTextContent("ASUS E210");
 		expect(screen.getByTestId(`${testId}-cell-row-0-col-cpu`)).toHaveTextContent("Intel Pentium N4020");
+		expect(screen.getByTestId(`${testId}-cell-row-0-col-gpu`)).toHaveTextContent("Integrated Intel UHD Graphics");
 
 		const editButton = screen.getByTestId(`${testId}-cell-row-0-col-Edit-button`);
 		expect(editButton).toBeInTheDocument();
@@ -146,7 +151,7 @@ describe("LaptopTable tests", () => {
 		// assert - check that the console.log was called with the expected message
 		expect(console.log).toHaveBeenCalled();
 		const message = console.log.mock.calls[0][0];
-		const expectedMessage = `editCallback: {"id":2,"name":"ASUS E210","description":"Extremely cheap and functional","cpu":"Intel Pentium N4020"})`;
+		const expectedMessage = `editCallback: {"id":2,"name":"ASUS E210","cpu":"Intel Pentium N4020","gpu":"Integrated Intel UHD Graphics","description":"Extremely cheap and functional"})`;
 		expect(message).toMatch(expectedMessage);
 		restoreConsole();
 	});
@@ -168,6 +173,7 @@ describe("LaptopTable tests", () => {
 		expect(await screen.findByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("2");
 		expect(screen.getByTestId(`${testId}-cell-row-0-col-name`)).toHaveTextContent("ASUS E210");
 		expect(screen.getByTestId(`${testId}-cell-row-0-col-cpu`)).toHaveTextContent("Intel Pentium N4020");
+		expect(screen.getByTestId(`${testId}-cell-row-0-col-gpu`)).toHaveTextContent("Integrated Intel UHD Graphics");
 
 		const detailsButton = screen.getByTestId(`${testId}-cell-row-0-col-Details-button`);
 		expect(detailsButton).toBeInTheDocument();
@@ -181,7 +187,7 @@ describe("LaptopTable tests", () => {
 		// assert - check that the console.log was called with the expected message
 		expect(console.log).toHaveBeenCalled();
 		const message = console.log.mock.calls[0][0];
-		const expectedMessage = `detailsCallback: {"id":2,"name":"ASUS E210","description":"Extremely cheap and functional","cpu":"Intel Pentium N4020"})`;
+		const expectedMessage = `detailsCallback: {"id":2,"name":"ASUS E210","cpu":"Intel Pentium N4020","gpu":"Integrated Intel UHD Graphics","description":"Extremely cheap and functional"})`;
 		expect(message).toMatch(expectedMessage);
 		restoreConsole();
 	});
@@ -203,6 +209,7 @@ describe("LaptopTable tests", () => {
 		expect(await screen.findByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("2");
 		expect(screen.getByTestId(`${testId}-cell-row-0-col-name`)).toHaveTextContent("ASUS E210");
 		expect(screen.getByTestId(`${testId}-cell-row-0-col-cpu`)).toHaveTextContent("Intel Pentium N4020");
+		expect(screen.getByTestId(`${testId}-cell-row-0-col-gpu`)).toHaveTextContent("Integrated Intel UHD Graphics");
 
 		const deleteButton = screen.getByTestId(`${testId}-cell-row-0-col-Delete-button`);
 		expect(deleteButton).toBeInTheDocument();
@@ -213,7 +220,7 @@ describe("LaptopTable tests", () => {
 		// assert - check that the console.log was called with the expected message
 		await (waitFor(() => expect(console.log).toHaveBeenCalled()));
 		const message = console.log.mock.calls[0][0];
-		const expectedMessage = `deleteCallback: {"id":2,"name":"ASUS E210","description":"Extremely cheap and functional","cpu":"Intel Pentium N4020"})`;
+		const expectedMessage = `deleteCallback: {"id":2,"name":"ASUS E210","cpu":"Intel Pentium N4020","gpu":"Integrated Intel UHD Graphics","description":"Extremely cheap and functional"})`;
 		expect(message).toMatch(expectedMessage);
 		restoreConsole();
 	});
