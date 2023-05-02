@@ -41,7 +41,8 @@ describe("SchoolCreatePage tests", () => {
             "school": {
                 id: 3,
                 name: "San Diego University",
-                rank: "34"
+                rank: "34",
+                description: "Public land-grant research university in La Jolla, California. It is ranked among the best universities in the world."
             }
         });
 
@@ -60,12 +61,16 @@ describe("SchoolCreatePage tests", () => {
         const rankInput = screen.getByLabelText("Rank");
         expect(rankInput).toBeInTheDocument();
 
+        const descriptionInput = screen.getByLabelText("Description");
+        expect(descriptionInput).toBeInTheDocument();
+
         const createButton = screen.getByText("Create");
         expect(createButton).toBeInTheDocument();
 
         await act(async () => {
             fireEvent.change(nameInput, { target: { value: 'San Diego University' } })
             fireEvent.change(rankInput, { target: { value: '34' } })
+            fireEvent.change(descriptionInput, { target: { value: 'Public land-grant research university in La Jolla, California. It is ranked among the best universities in the world.' } })
             fireEvent.click(createButton);
         });
 
@@ -75,7 +80,7 @@ describe("SchoolCreatePage tests", () => {
         // assert - check that the console.log was called with the expected message
         expect(console.log).toHaveBeenCalled();
         const message = console.log.mock.calls[0][0];
-        const expectedMessage =  `createdSchool: {"school":{"id":3,"name":"San Diego University","rank":"34"}`
+        const expectedMessage =  `createdSchool: {"school":{"id":3,"name":"San Diego University","rank":"34","description":"Public land-grant research university in La Jolla, California. It is ranked among the best universities in the world."}`
 
         expect(message).toMatch(expectedMessage);
         restoreConsole();

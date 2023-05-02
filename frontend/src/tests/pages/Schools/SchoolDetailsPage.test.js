@@ -21,7 +21,8 @@ jest.mock('main/utils/schoolUtils', () => {
                     school: {
                         id: 3,
                         name: "UCSD",
-                        rank: "34"
+                        rank: "34",
+                        description: "Public land-grant research university in La Jolla, California. It is ranked among the best universities in the world."
                     }
                 }
             }
@@ -52,6 +53,7 @@ describe("SchoolDetailsPage tests", () => {
         );
         expect(screen.getByText("UCSD")).toBeInTheDocument();
         expect(screen.getByText("34")).toBeInTheDocument();
+        expect(screen.getByText("Public land-grant research university in La Jolla, California. It is ranked among the best universities in the world.")).toBeInTheDocument();
 
         expect(screen.queryByText("Delete")).not.toBeInTheDocument();
         expect(screen.queryByText("Edit")).not.toBeInTheDocument();
