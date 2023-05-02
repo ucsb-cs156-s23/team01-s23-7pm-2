@@ -40,12 +40,16 @@ export default function LaptopTable({
 			accessor: 'name',
 		},
 		{
-			Header: 'Description',
-			accessor: 'description',
-		},
-		{
 			Header: 'CPU',
 			accessor: 'cpu',
+		},
+		{
+			Header: 'GPU',
+			accessor: 'gpu',
+		},
+		{
+			Header: 'Description',
+			accessor: 'description',
 		}
 	];
 
