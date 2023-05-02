@@ -42,6 +42,10 @@ export default function StoreTable({
         {
             Header: 'Location',
             accessor: 'location',
+        },
+        {
+            Header: 'Sales',
+            accessor: 'sales',
         }
     ];
 

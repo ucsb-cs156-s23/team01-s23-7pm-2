@@ -73,6 +73,22 @@ function StoreForm({ initialContents, submitAction, buttonLabel = "Create" }) {
                 </Form.Control.Feedback>
             </Form.Group>
 
+            <Form.Group className="mb-3" >
+                <Form.Label htmlFor="sales">Sales</Form.Label>
+                <Form.Control
+                    data-testid={testIdPrefix + "-sales"}
+                    id="sales"
+                    type="text"
+                    isInvalid={Boolean(errors.sales)}
+                    {...register("sales", {
+                        required: "Sales is required."
+                    })}
+                />
+                <Form.Control.Feedback type="invalid">
+                    {errors.sales?.message}
+                </Form.Control.Feedback>
+            </Form.Group>
+
 
             <Button
                 type="submit"

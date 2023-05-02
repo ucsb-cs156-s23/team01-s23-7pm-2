@@ -29,7 +29,8 @@ jest.mock('main/utils/storeUtils', () => {
                             "city": "Isla Vista",
                             "state": "CA",
                             "zip": "93117",
-                            "location": "6975 Market Pl Dr"
+                            "location": "6975 Market Pl Dr",
+                            "sales": "High"
                         },
                     ]
                 }
@@ -71,6 +72,9 @@ describe("StoreIndexPage tests", () => {
         const location = screen.getByText("6975 Market Pl Dr");
         expect(location).toBeInTheDocument();
 
+        const sales = screen.getByText("High");
+        expect(sales).toBeInTheDocument();
+
         expect(screen.getByTestId("StoreTable-cell-row-0-col-Delete-button")).toBeInTheDocument();
         expect(screen.getByTestId("StoreTable-cell-row-0-col-Details-button")).toBeInTheDocument();
         expect(screen.getByTestId("StoreTable-cell-row-0-col-Edit-button")).toBeInTheDocument();
@@ -94,6 +98,9 @@ describe("StoreIndexPage tests", () => {
         const location = screen.getByText("6975 Market Pl Dr");
         expect(location).toBeInTheDocument();
 
+        const sales = screen.getByText("High");
+        expect(sales).toBeInTheDocument();
+
         const deleteButton = screen.getByTestId("StoreTable-cell-row-0-col-Delete-button");
         expect(deleteButton).toBeInTheDocument();
 
@@ -108,7 +115,7 @@ describe("StoreIndexPage tests", () => {
         // assert - check that the console.log was called with the expected message
         expect(console.log).toHaveBeenCalled();
         const message = console.log.mock.calls[0][0];
-        const expectedMessage = `StoreIndexPage deleteCallback: {"id":3,"name":"Home Depot","location":"6975 Market Pl Dr"}`;
+        const expectedMessage = `StoreIndexPage deleteCallback: {"id":3,"name":"Home Depot","location":"6975 Market Pl Dr","sales":"High"}`;
         expect(message).toMatch(expectedMessage);
         restoreConsole();
 
