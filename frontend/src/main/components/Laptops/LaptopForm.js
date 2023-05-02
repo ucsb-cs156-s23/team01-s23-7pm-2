@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 function LaptopForm({ initialContents, submitAction, buttonLabel = "Create" }) {
 
     const navigate = useNavigate();
-
+    
     // Stryker disable all
     const {
         register,
@@ -16,7 +16,7 @@ function LaptopForm({ initialContents, submitAction, buttonLabel = "Create" }) {
         { defaultValues: initialContents || {}, }
     );
     // Stryker enable all
-
+   
     const testIdPrefix = "LaptopForm";
 
     return (
@@ -46,7 +46,7 @@ function LaptopForm({ initialContents, submitAction, buttonLabel = "Create" }) {
                     isInvalid={Boolean(errors.name)}
                     {...register("name", {
                         required: "Name is required.",
-                        maxLength: {
+                        maxLength : {
                             value: 30,
                             message: "Max length 30 characters"
                         }
@@ -54,6 +54,38 @@ function LaptopForm({ initialContents, submitAction, buttonLabel = "Create" }) {
                 />
                 <Form.Control.Feedback type="invalid">
                     {errors.name?.message}
+                </Form.Control.Feedback>
+            </Form.Group>
+
+            <Form.Group className="mb-3" >
+                <Form.Label htmlFor="cpu">CPU</Form.Label>
+                <Form.Control
+                    data-testid={testIdPrefix + "-cpu"}
+                    id="cpu"
+                    type="text"
+                    isInvalid={Boolean(errors.cpu)}
+                    {...register("cpu", {
+                        required: "CPU is required."
+                    })}
+                />
+                <Form.Control.Feedback type="invalid">
+                    {errors.cpu?.message}
+                </Form.Control.Feedback>
+            </Form.Group>
+
+            <Form.Group className="mb-3" >
+                <Form.Label htmlFor="gpu">GPU</Form.Label>
+                <Form.Control
+                    data-testid={testIdPrefix + "-gpu"}
+                    id="gpu"
+                    type="text"
+                    isInvalid={Boolean(errors.gpu)}
+                    {...register("gpu", {
+                        required: "GPU is required."
+                    })}
+                />
+                <Form.Control.Feedback type="invalid">
+                    {errors.gpu?.message}
                 </Form.Control.Feedback>
             </Form.Group>
 
