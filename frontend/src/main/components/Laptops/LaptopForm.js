@@ -5,19 +5,19 @@ import { useNavigate } from 'react-router-dom';
 
 function LaptopForm({ initialContents, submitAction, buttonLabel = "Create" }) {
 
-	const navigate = useNavigate();
-
-	// Stryker disable all
-	const {
-		register,
-		formState: { errors },
-		handleSubmit,
-	} = useForm(
-		{ defaultValues: initialContents || {}, }
-	);
-	// Stryker enable all
-
-	const testIdPrefix = "LaptopForm";
+    const navigate = useNavigate();
+    
+    // Stryker disable all
+    const {
+        register,
+        formState: { errors },
+        handleSubmit,
+    } = useForm(
+        { defaultValues: initialContents || {}, }
+    );
+    // Stryker enable all
+   
+    const testIdPrefix = "LaptopForm";
 
 	return (
 
@@ -37,41 +37,73 @@ function LaptopForm({ initialContents, submitAction, buttonLabel = "Create" }) {
 				</Form.Group>
 			)}
 
-			<Form.Group className="mb-3" >
-				<Form.Label htmlFor="name">Name</Form.Label>
-				<Form.Control
-					data-testid={testIdPrefix + "-name"}
-					id="name"
-					type="text"
-					isInvalid={Boolean(errors.name)}
-					{...register("name", {
-						required: "Name is required.",
-						maxLength: {
-							value: 30,
-							message: "Max length 30 characters"
-						}
-					})}
-				/>
-				<Form.Control.Feedback type="invalid">
-					{errors.name?.message}
-				</Form.Control.Feedback>
-			</Form.Group>
+            <Form.Group className="mb-3" >
+                <Form.Label htmlFor="name">Name</Form.Label>
+                <Form.Control
+                    data-testid={testIdPrefix + "-name"}
+                    id="name"
+                    type="text"
+                    isInvalid={Boolean(errors.name)}
+                    {...register("name", {
+                        required: "Name is required.",
+                        maxLength : {
+                            value: 30,
+                            message: "Max length 30 characters"
+                        }
+                    })}
+                />
+                <Form.Control.Feedback type="invalid">
+                    {errors.name?.message}
+                </Form.Control.Feedback>
+            </Form.Group>
 
-			<Form.Group className="mb-3" >
-				<Form.Label htmlFor="description">Description</Form.Label>
-				<Form.Control
-					data-testid={testIdPrefix + "-description"}
-					id="description"
-					type="text"
-					isInvalid={Boolean(errors.description)}
-					{...register("description", {
-						required: "Description is required."
-					})}
-				/>
-				<Form.Control.Feedback type="invalid">
-					{errors.description?.message}
-				</Form.Control.Feedback>
-			</Form.Group>
+            <Form.Group className="mb-3" >
+                <Form.Label htmlFor="cpu">CPU</Form.Label>
+                <Form.Control
+                    data-testid={testIdPrefix + "-cpu"}
+                    id="cpu"
+                    type="text"
+                    isInvalid={Boolean(errors.cpu)}
+                    {...register("cpu", {
+                        required: "CPU is required."
+                    })}
+                />
+                <Form.Control.Feedback type="invalid">
+                    {errors.cpu?.message}
+                </Form.Control.Feedback>
+            </Form.Group>
+
+            <Form.Group className="mb-3" >
+                <Form.Label htmlFor="gpu">GPU</Form.Label>
+                <Form.Control
+                    data-testid={testIdPrefix + "-gpu"}
+                    id="gpu"
+                    type="text"
+                    isInvalid={Boolean(errors.gpu)}
+                    {...register("gpu", {
+                        required: "GPU is required."
+                    })}
+                />
+                <Form.Control.Feedback type="invalid">
+                    {errors.gpu?.message}
+                </Form.Control.Feedback>
+            </Form.Group>
+
+            <Form.Group className="mb-3" >
+                <Form.Label htmlFor="description">Description</Form.Label>
+                <Form.Control
+                    data-testid={testIdPrefix + "-description"}
+                    id="description"
+                    type="text"
+                    isInvalid={Boolean(errors.description)}
+                    {...register("description", {
+                        required: "Description is required."
+                    })}
+                />
+                <Form.Control.Feedback type="invalid">
+                    {errors.description?.message}
+                </Form.Control.Feedback>
+            </Form.Group>
 
 
 			<Button
