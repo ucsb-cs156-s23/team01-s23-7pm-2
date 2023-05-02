@@ -181,7 +181,7 @@ describe("LaptopTable tests", () => {
 		// assert - check that the console.log was called with the expected message
 		expect(console.log).toHaveBeenCalled();
 		const message = console.log.mock.calls[0][0];
-		const expectedMessage = `editCallback: {"id":2,"name":"ASUS E210","description":"Extremely cheap and functional","cpu":"Intel Pentium N4020"})`;
+		const expectedMessage = `detailsCallback: {"id":2,"name":"ASUS E210","description":"Extremely cheap and functional","cpu":"Intel Pentium N4020"})`;
 		expect(message).toMatch(expectedMessage);
 		restoreConsole();
 	});
@@ -213,7 +213,7 @@ describe("LaptopTable tests", () => {
 		// assert - check that the console.log was called with the expected message
 		await (waitFor(() => expect(console.log).toHaveBeenCalled()));
 		const message = console.log.mock.calls[0][0];
-		const expectedMessage = `editCallback: {"id":2,"name":"ASUS E210","description":"Extremely cheap and functional","cpu":"Intel Pentium N4020"})`;
+		const expectedMessage = `deleteCallback: {"id":2,"name":"ASUS E210","description":"Extremely cheap and functional","cpu":"Intel Pentium N4020"})`;
 		expect(message).toMatch(expectedMessage);
 		restoreConsole();
 	});
