@@ -21,7 +21,8 @@ jest.mock('main/utils/storeUtils', () => {
                     store: {
                         id: 3,
                         name: "Home Depot",
-                        location: "6975 Market Pl Dr"
+                        location: "6975 Market Pl Dr",
+                        sales: "High"
                     }
                 }
             }
@@ -52,6 +53,7 @@ describe("StoreDetailsPage tests", () => {
         );
         expect(screen.getByText("Home Depot")).toBeInTheDocument();
         expect(screen.getByText("6975 Market Pl Dr")).toBeInTheDocument();
+        expect(screen.getByText("High")).toBeInTheDocument();
 
         expect(screen.queryByText("Delete")).not.toBeInTheDocument();
         expect(screen.queryByText("Edit")).not.toBeInTheDocument();

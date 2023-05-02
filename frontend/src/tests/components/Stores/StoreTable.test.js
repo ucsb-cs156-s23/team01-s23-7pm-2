@@ -15,8 +15,8 @@ jest.mock('react-router-dom', () => ({
 describe("StoreTable tests", () => {
   const queryClient = new QueryClient();
 
-  const expectedHeaders = ["id", "Name", "Location"];
-  const expectedFields = ["id", "name", "location"];
+  const expectedHeaders = ["id", "Name", "Location", "Sales"];
+  const expectedFields = ["id", "name", "location", "sales"];
   const testId = "StoreTable";
 
   test("showCell function works properly", () => {
@@ -141,7 +141,7 @@ describe("StoreTable tests", () => {
     // assert - check that the console.log was called with the expected message
     expect(console.log).toHaveBeenCalled();
     const message = console.log.mock.calls[0][0];
-    const expectedMessage = `editCallback: {"id":2,"name":"Target","location":"6865 Hollister Ave"})`;
+    const expectedMessage = `editCallback: {"id":2,"name":"Target","location":"6865 Hollister Ave","sales":"High"})`;
     expect(message).toMatch(expectedMessage);
     restoreConsole();
   });
@@ -175,7 +175,7 @@ describe("StoreTable tests", () => {
     // assert - check that the console.log was called with the expected message
     expect(console.log).toHaveBeenCalled();
     const message = console.log.mock.calls[0][0];
-    const expectedMessage = `detailsCallback: {"id":2,"name":"Target","location":"6865 Hollister Ave"})`;
+    const expectedMessage = `detailsCallback: {"id":2,"name":"Target","location":"6865 Hollister Ave","sales":"High"})`;
     expect(message).toMatch(expectedMessage);
     restoreConsole();
   });
@@ -206,7 +206,7 @@ describe("StoreTable tests", () => {
      // assert - check that the console.log was called with the expected message
      await(waitFor(() => expect(console.log).toHaveBeenCalled()));
      const message = console.log.mock.calls[0][0];
-     const expectedMessage = `deleteCallback: {"id":2,"name":"Target","location":"6865 Hollister Ave"})`;
+     const expectedMessage = `deleteCallback: {"id":2,"name":"Target","location":"6865 Hollister Ave","sales":"High"})`;
      expect(message).toMatch(expectedMessage);
      restoreConsole();
   });
