@@ -62,9 +62,11 @@ describe("LaptopTable tests", () => {
 
 		expect(screen.getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("2");
 		expect(screen.getByTestId(`${testId}-cell-row-0-col-name`)).toHaveTextContent("ASUS E210");
+		expect(screen.getByTestId(`${testId}-cell-row-0-col-cpu`)).toHaveTextContent("Intel Pentium N4020");
 
 		expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("3");
 		expect(screen.getByTestId(`${testId}-cell-row-1-col-name`)).toHaveTextContent("Alienware m18");
+		expect(screen.getByTestId(`${testId}-cell-row-0-col-cpu`)).toHaveTextContent("Intel Core i7-13650HX");
 
 		const detailsButton = screen.getByTestId(`${testId}-cell-row-0-col-Details-button`);
 		expect(detailsButton).toBeInTheDocument();
@@ -102,9 +104,11 @@ describe("LaptopTable tests", () => {
 
 		expect(screen.getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("2");
 		expect(screen.getByTestId(`${testId}-cell-row-0-col-name`)).toHaveTextContent("ASUS E210");
+		expect(screen.getByTestId(`${testId}-cell-row-0-col-cpu`)).toHaveTextContent("Intel Pentium N4020");
 
 		expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("3");
 		expect(screen.getByTestId(`${testId}-cell-row-1-col-name`)).toHaveTextContent("Alienware m18");
+		expect(screen.getByTestId(`${testId}-cell-row-0-col-cpu`)).toHaveTextContent("Intel Core i7-13650HX");
 
 		expect(screen.queryByText("Delete")).not.toBeInTheDocument();
 		expect(screen.queryByText("Edit")).not.toBeInTheDocument();
@@ -128,6 +132,7 @@ describe("LaptopTable tests", () => {
 		// assert - check that the expected content is rendered
 		expect(await screen.findByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("2");
 		expect(screen.getByTestId(`${testId}-cell-row-0-col-name`)).toHaveTextContent("ASUS E210");
+		expect(screen.getByTestId(`${testId}-cell-row-0-col-cpu`)).toHaveTextContent("Intel Pentium N4020");
 
 		const editButton = screen.getByTestId(`${testId}-cell-row-0-col-Edit-button`);
 		expect(editButton).toBeInTheDocument();
@@ -141,7 +146,7 @@ describe("LaptopTable tests", () => {
 		// assert - check that the console.log was called with the expected message
 		expect(console.log).toHaveBeenCalled();
 		const message = console.log.mock.calls[0][0];
-		const expectedMessage = `editCallback: {"id":2,"name":"ASUS E210","description":"Extremely cheap and functional"})`;
+		const expectedMessage = `editCallback: {"id":2,"name":"ASUS E210","cpu":"Intel Pentium N4020","description":"Extremely cheap and functional"})`;
 		expect(message).toMatch(expectedMessage);
 		restoreConsole();
 	});
@@ -162,6 +167,7 @@ describe("LaptopTable tests", () => {
 		// assert - check that the expected content is rendered
 		expect(await screen.findByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("2");
 		expect(screen.getByTestId(`${testId}-cell-row-0-col-name`)).toHaveTextContent("ASUS E210");
+		expect(screen.getByTestId(`${testId}-cell-row-0-col-cpu`)).toHaveTextContent("Intel Pentium N4020");
 
 		const detailsButton = screen.getByTestId(`${testId}-cell-row-0-col-Details-button`);
 		expect(detailsButton).toBeInTheDocument();
@@ -175,7 +181,7 @@ describe("LaptopTable tests", () => {
 		// assert - check that the console.log was called with the expected message
 		expect(console.log).toHaveBeenCalled();
 		const message = console.log.mock.calls[0][0];
-		const expectedMessage = `detailsCallback: {"id":2,"name":"ASUS E210","description":"Extremely cheap and functional"})`;
+		const expectedMessage = `detailsCallback: {"id":2,"name":"ASUS E210","cpu":"Intel Pentium N4020","description":"Extremely cheap and functional"})`;
 		expect(message).toMatch(expectedMessage);
 		restoreConsole();
 	});
@@ -196,6 +202,7 @@ describe("LaptopTable tests", () => {
 		// assert - check that the expected content is rendered
 		expect(await screen.findByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("2");
 		expect(screen.getByTestId(`${testId}-cell-row-0-col-name`)).toHaveTextContent("ASUS E210");
+		expect(screen.getByTestId(`${testId}-cell-row-0-col-cpu`)).toHaveTextContent("Intel Pentium N4020");
 
 		const deleteButton = screen.getByTestId(`${testId}-cell-row-0-col-Delete-button`);
 		expect(deleteButton).toBeInTheDocument();
@@ -206,7 +213,7 @@ describe("LaptopTable tests", () => {
 		// assert - check that the console.log was called with the expected message
 		await (waitFor(() => expect(console.log).toHaveBeenCalled()));
 		const message = console.log.mock.calls[0][0];
-		const expectedMessage = `deleteCallback: {"id":2,"name":"ASUS E210","description":"Extremely cheap and functional"})`;
+		const expectedMessage = `deleteCallback: {"id":2,"name":"ASUS E210","cpu":"Intel Pentium N4020","description":"Extremely cheap and functional"})`;
 		expect(message).toMatch(expectedMessage);
 		restoreConsole();
 	});

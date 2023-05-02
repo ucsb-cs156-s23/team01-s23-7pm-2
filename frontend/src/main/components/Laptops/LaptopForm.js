@@ -73,6 +73,22 @@ function LaptopForm({ initialContents, submitAction, buttonLabel = "Create" }) {
                 </Form.Control.Feedback>
             </Form.Group>
 
+            <Form.Group className="mb-3" >
+                <Form.Label htmlFor="description">CPU</Form.Label>
+                <Form.Control
+                    data-testid={testIdPrefix + "-description"}
+                    id="cpu"
+                    type="text"
+                    isInvalid={Boolean(errors.cpu)}
+                    {...register("cpu", {
+                        required: "Description is required."
+                    })}
+                />
+                <Form.Control.Feedback type="invalid">
+                    {errors.description?.message}
+                </Form.Control.Feedback>
+            </Form.Group>
+
 
             <Button
                 type="submit"
