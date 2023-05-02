@@ -25,7 +25,8 @@ jest.mock('main/utils/storeUtils', () => {
                     store: {
                         id: 3,
                         name: "Home Depot",
-                        location: "6975 Market Pl Dr"
+                        location: "6975 Market Pl Dr",
+                        sales: "High"
                     }
                 }
             }
@@ -71,7 +72,8 @@ describe("StoreEditPage tests", () => {
             "store": {
                 id: 3,
                 name: "Westfield Topanga",
-                location: "6600 CA-27, Canoga Park"
+                location: "6600 CA-27, Canoga Park",
+                sales: "High"
             }
         });
 
@@ -90,12 +92,16 @@ describe("StoreEditPage tests", () => {
         const locationInput = screen.getByLabelText("Location");
         expect(locationInput).toBeInTheDocument();
 
+        const salesInput = screen.getByLabelText("Sales");
+        expect(salesInput).toBeInTheDocument();
+
         const updateButton = screen.getByText("Update");
         expect(updateButton).toBeInTheDocument();
 
         await act(async () => {
             fireEvent.change(nameInput, { target: { value: 'Westfield Topanga' } })
             fireEvent.change(locationInput, { target: { value: '6600 CA-27, Canoga Park' } })
+            fireEvent.change(salesInput, { target: { value: 'High' } })
             fireEvent.click(updateButton);
         });
 
@@ -105,7 +111,7 @@ describe("StoreEditPage tests", () => {
         // assert - check that the console.log was called with the expected message
         expect(console.log).toHaveBeenCalled();
         const message = console.log.mock.calls[0][0];
-        const expectedMessage =  `updatedStore: {"store":{"id":3,"name":"Westfield Topanga","location":"6600 CA-27, Canoga Park"}`
+        const expectedMessage =  `updatedStore: {"store":{"id":3,"name":"Westfield Topanga","location":"6600 CA-27, Canoga Park","sales":"High"}`
 
         expect(message).toMatch(expectedMessage);
         restoreConsole();

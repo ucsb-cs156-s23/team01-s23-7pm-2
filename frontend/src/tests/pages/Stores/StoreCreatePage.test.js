@@ -40,8 +40,9 @@ describe("StoreCreatePage tests", () => {
         mockAdd.mockReturnValue({
             "store": {
                 id: 3,
-                name: "South Coast Deli",
-                location: "Sandwiches and Salads"
+                name: "Westfield",
+                location: "24201 West Valencia Blvd",
+                sales: "$$"
             }
         });
 
@@ -60,12 +61,16 @@ describe("StoreCreatePage tests", () => {
         const locationInput = screen.getByLabelText("Location");
         expect(locationInput).toBeInTheDocument();
 
+        const salesInput = screen.getByLabelText("Sales");
+        expect(salesInput).toBeInTheDocument();
+
         const createButton = screen.getByText("Create");
         expect(createButton).toBeInTheDocument();
 
         await act(async () => {
-            fireEvent.change(nameInput, { target: { value: 'South Coast Deli' } })
-            fireEvent.change(locationInput, { target: { value: 'Sandwiches and Salads' } })
+            fireEvent.change(nameInput, { target: { value: 'Westfield' } })
+            fireEvent.change(locationInput, { target: { value: '24201 West Valencia Blvd' } })
+            fireEvent.change(salesInput, { target: { value: '$$' } })
             fireEvent.click(createButton);
         });
 
@@ -75,7 +80,7 @@ describe("StoreCreatePage tests", () => {
         // assert - check that the console.log was called with the expected message
         expect(console.log).toHaveBeenCalled();
         const message = console.log.mock.calls[0][0];
-        const expectedMessage =  `createdStore: {"store":{"id":3,"name":"South Coast Deli","location":"Sandwiches and Salads"}`
+        const expectedMessage =  `createdStore: {"store":{"id":3,"name":"Westfield","location":"24201 West Valencia Blvd","sales":"$$"}`
 
         expect(message).toMatch(expectedMessage);
         restoreConsole();
